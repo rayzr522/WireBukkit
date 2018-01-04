@@ -45,7 +45,8 @@ public class Session {
             Vector direction = distance.clone().normalize();
             double mag = distance.lengthSquared();
 
-            for (double d = 1.0; d * d < mag; d++) {
+            last.subtract(direction);
+            for (double d = 0.0; d * d < mag; d++) {
                 last.add(direction);
                 last.getBlock().setType(Material.DIAMOND_BLOCK);
                 last.getBlock().getRelative(BlockFace.UP).setType(Material.REDSTONE_WIRE);

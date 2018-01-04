@@ -3,6 +3,7 @@ package me.rayzr522.wirebukkit.commands;
 import me.rayzr522.wirebukkit.WireBukkit;
 import me.rayzr522.wirebukkit.managers.SessionManager;
 import me.rayzr522.wirebukkit.sessions.Session;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,8 +45,9 @@ public class CommandWire implements CommandExecutor {
             sessionManager.createSession(player.getUniqueId());
             player.sendMessage(plugin.tr("command.wire.session-reset"));
         } else if (sub.equals("add")) {
-            session.addPoint(player.getLocation());
-            player.sendMessage(plugin.tr("command.wire.point-added", player.getLocation().toVector().toString()));
+            Location blockLocation = player.getLocation().getBlock().getLocation();
+            session.addPoint(blockLocation);
+            player.sendMessage(plugin.tr("command.wire.point-added", blockLocation.toVector().toString()));
         } else if (sub.equals("finalize")) {
             if (session.getPoints().size() < 2) {
                 player.sendMessage(plugin.tr("command.wire.need-more-points"));
