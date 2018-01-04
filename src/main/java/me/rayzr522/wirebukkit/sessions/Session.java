@@ -42,9 +42,9 @@ public class Session {
 
             Vector distance = next.toVector().subtract(last.toVector());
             Vector direction = distance.clone().normalize();
-            double mag = distance.length();
+            double mag = distance.lengthSquared();
 
-            for (double d = 1.0; d < mag; d++) {
+            for (double d = 1.0; d * d < mag; d++) {
                 last.add(direction);
                 last.getBlock().setType(Material.DIAMOND_BLOCK);
             }
