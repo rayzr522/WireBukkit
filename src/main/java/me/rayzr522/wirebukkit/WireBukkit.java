@@ -1,5 +1,7 @@
 package me.rayzr522.wirebukkit;
 
+import me.rayzr522.wirebukkit.commands.CommandWire;
+import me.rayzr522.wirebukkit.managers.SessionManager;
 import me.rayzr522.wirebukkit.utils.MessageHandler;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,6 +17,7 @@ import java.util.logging.Level;
 public class WireBukkit extends JavaPlugin {
     private static WireBukkit instance;
     private MessageHandler messages = new MessageHandler();
+    private SessionManager sessionManager;
 
     public static WireBukkit getInstance() {
         return instance;
@@ -24,12 +27,20 @@ public class WireBukkit extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        sessionManager = new SessionManager(this);
+
+        getCommand("wire").setExecutor(new CommandWire(this));
+
         reload();
     }
 
     @Override
     public void onDisable() {
         instance = null;
+    }
+
+    public SessionManager getSessionManager() {
+        return sessionManager;
     }
 
     /**
@@ -133,5 +144,4 @@ public class WireBukkit extends JavaPlugin {
     public MessageHandler getMessages() {
         return messages;
     }
-
 }

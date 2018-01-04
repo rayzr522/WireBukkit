@@ -3,8 +3,8 @@ name: WireBukkit
 version: 1.0.0
 description: A tool for generating redstone wiring in Minecraft
 author: Rayzr
-#commands:
-#  wirebukkit:
-#    description: The main command for WireBukkit
-#    aliases: [alias1,alias2]
-#    usage: "\u00A7cRayzr fracked something up."
+commands:
+  wire:
+    description: Manages wire sessions
+    # aliases: [alias1,alias2]
+    usage: "\u00A7cRayzr fracked something up."
