@@ -2,6 +2,7 @@ package me.rayzr522.wirebukkit.sessions;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class Session {
             for (double d = 1.0; d * d < mag; d++) {
                 last.add(direction);
                 last.getBlock().setType(Material.DIAMOND_BLOCK);
+                last.getBlock().getRelative(BlockFace.UP).setType(Material.REDSTONE_WIRE);
             }
         }
     }
